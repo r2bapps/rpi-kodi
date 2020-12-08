@@ -24,7 +24,7 @@ for filename in files:
 
 # moves downloaded files to scripts folders
 for file in files:
-    shutil.move(file, scripts_path)
+    shutil.move(file, os.path.join(scripts_path, file))
 
 print "Downloading", base_url
 print "Files", files
