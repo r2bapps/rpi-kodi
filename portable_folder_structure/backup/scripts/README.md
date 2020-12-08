@@ -10,6 +10,9 @@ Tested on:
 
 Bundled python version of Libreelec 9.2.x is Python 2.7.x
 
+### updater.py
+Downloads below files and writes them locally.
+
 ### cleaner.py
 Cleans trash: .txt, .url and empty folders.
 
