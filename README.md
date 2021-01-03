@@ -24,7 +24,7 @@ Permite controlar el sistema a través de un cliente conectado en la misma red, 
 Testeado en [Kore](https://play.google.com/store/apps/details?id=org.xbmc.kore&hl=es&gl=US) para Android.
 
 **Configuración de Kore**:
-* Puerto: 37999
+* Puerto: 8080
 * Usuario: kodi
 * Contraseña: kodi
 
