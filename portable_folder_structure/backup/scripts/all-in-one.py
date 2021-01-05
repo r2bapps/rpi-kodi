@@ -112,5 +112,6 @@ def execute():
     unzip(default_search_path, default_unzip_search_extensions)
     unrar(default_search_path, default_unrar_search_extensions, default_parts_extensions)
     clean(default_search_path, default_clean_search_extensions)
+    print "Finish!!"
     
 execute()
