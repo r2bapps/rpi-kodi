@@ -41,3 +41,24 @@ Extract and delete .rar multi-part and container folder.
 #### How to
 
 Replace [search_path value](https://github.com/r2bapps/raspberry-pi/blob/main/unrar.py#L6) with your path or execute *python unrar.py [your_path]*
+
+### all-in-one.py
+Executes unzip.py, unrar.py and clean.py sequentially.
+
+#### How to
+
+Execute *python all-in-one.py*. It uses default path of previous scripts.
+
+### remove-completed-torrents.sh
+Removes completed torrents from transmission torrents list.
+
+#### How to
+
+Execute *./remove-completed-torrents.sh*
+
+### completed-torrents.sh
+Executes remove-completed-torrents.sh and all-in-one.py sequentially.
+
+#### How to
+
+Execute *./completed-torrents.sh*. It is called by transmission each time a torrent finishes.

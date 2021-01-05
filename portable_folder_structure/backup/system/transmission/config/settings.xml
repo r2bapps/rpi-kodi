@@ -1,0 +1,11 @@
+<settings version="2">
+    <setting id="tx_allowed" default="true">*.*.*.*</setting>
+    <setting id="tx_download">/media/portable/torrent/descargas/</setting>
+    <setting id="tx_incomplete">/media/portable/torrent/incompletos/</setting>
+    <setting id="tx_nice">10</setting>
+    <setting id="tx_password" default="true"></setting>
+    <setting id="tx_port">9091</setting>
+    <setting id="tx_separate_incomplete">true</setting>
+    <setting id="tx_username" default="true"></setting>
+    <setting id="tx_watch">/media/portable/torrent/watch/</setting>
+</settings>

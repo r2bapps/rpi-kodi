@@ -5,7 +5,7 @@ print "Date", datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
 scripts_path = "/media/portable/backup/scripts"
 base_url = "https://raw.githubusercontent.com/r2bapps/rpi-kodi/main/portable_folder_structure/backup/scripts/"
-files = ["updater.py", "unrar.py", "cleaner.py", "unzip.py", "README.md", "all-in-one.py"]
+files = ["updater.py", "unrar.py", "cleaner.py", "unzip.py", "README.md", "all-in-one.py", "remove-completed-torrents.sh", "completed-torrents.sh"]
 
 downloaded_files = []
 
