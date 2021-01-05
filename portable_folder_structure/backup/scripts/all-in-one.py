@@ -92,9 +92,19 @@ def cleanEmptyFolders(search_path):
                 os.rmdir(dir)
     #print "Deleted folders", deleted_folders
 
+# move alone file on folders
+def moveAloneFiles(search_path):
+    for currentpath, folders, files in os.walk(search_path):
+        for folder in folders:
+            dir = os.path.join(currentpath, folder)
+            dir_files = os.listdir(dir)
+            if len(dir_files) == 1:
+                shutil.move(dir_files[0], search_path)
+
 def clean(search_path, search_extensions):
     #print "Cleaning...", search_path
     cleanExtensions(search_path, search_extensions)
+    moveAloneFiles(search_path)
     cleanEmptyFolders(search_path)
 
 def execute():

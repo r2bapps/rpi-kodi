@@ -1,4 +1,4 @@
-import sys, os, datetime
+import sys, os, datetime, shutil
 
 print "Python version", sys.version
 print "Date", datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
@@ -22,7 +22,15 @@ for currentpath, folders, files in os.walk(search_path):
             deleted_files.append(found)
             os.remove(found)
 
-# delete empty folders
+# move alone file on folders
+for currentpath, folders, files in os.walk(search_path):
+    for folder in folders:
+        dir = os.path.join(currentpath, folder)
+        dir_files = os.listdir(dir)
+        if len(dir_files) == 1:
+            shutil.move(dir_files[0], search_path)
+
+# delete empty folders again
 for currentpath, folders, files in os.walk(search_path):
     for folder in folders:
         dir = os.path.join(currentpath, folder)
