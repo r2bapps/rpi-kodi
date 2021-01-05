@@ -7,6 +7,8 @@ default_unzip_search_extensions = [".zip"]
 default_unrar_search_extensions = [".rar"]
 default_parts_extensions = [".part01", ".part1"]
 default_clean_search_extensions = [".txt", ".url"]
+default_remove_patterns = ["[www", "[hdtv", "[bluray", "[ac3", "[castellano"]
+default_remove_end_pattern = "]"
 
 # shows env info
 def showEnvInfo():
@@ -101,11 +103,24 @@ def moveAloneFiles(search_path):
             if len(dir_files) == 1:
                 shutil.move(os.path.join(dir, dir_files[0]), os.path.join(search_path, dir_files[0]))
 
+def removeFilenamePatterns(search_path, patterns, end_pattern):
+    for currentpath, folders, files in os.walk(search_path):
+        for file in files:
+            filename, file_extension = os.path.splitext(file)
+            new_filename = filename
+            for pattern in patterns:
+                if pattern in new_filename.lower():
+                    begin = new_filename.lower().find(pattern)
+                    end = new_filename.lower().find(end_pattern, begin)
+                    new_filename = new_filename[0 : begin] + new_filename[end + 1 : len(new_filename)]
+            os.rename(os.path.join(search_path, file), os.path.join(search_path, new_filename.capitalize() + file_extension))
+
 def clean(search_path, search_extensions):
     #print "Cleaning...", search_path
     cleanExtensions(search_path, search_extensions)
     moveAloneFiles(search_path)
     cleanEmptyFolders(search_path)
+    removeFilenamePatterns(search_path, default_remove_patterns, default_remove_end_pattern)
 
 def execute():
     showEnvInfo()

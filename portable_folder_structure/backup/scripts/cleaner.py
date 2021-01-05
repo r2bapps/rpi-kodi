@@ -5,6 +5,8 @@ print "Date", datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
 search_path = "/media/portable/torrent/descargas"
 search_extensions = [".txt", ".url"]
+remove_patterns = ["[www", "[hdtv", "[bluray", "[ac3", "[castellano"]
+remove_end_pattern = "]"
 
 deleted_files = []
 deleted_folders = []
@@ -38,6 +40,18 @@ for currentpath, folders, files in os.walk(search_path):
         if len(dir_files) == 0:
             deleted_folders.append(dir)
             os.rmdir(dir)
+
+# renames files
+for currentpath, folders, files in os.walk(search_path):
+    for file in files:
+        filename, file_extension = os.path.splitext(file)
+        new_filename = filename
+        for pattern in remove_patterns:
+            if pattern in new_filename.lower():
+                begin = new_filename.lower().find(pattern)
+                end = new_filename.lower().find(remove_end_pattern, begin)
+                new_filename = new_filename[0 : begin] + new_filename[end + 1 : len(new_filename)]
+        os.rename(os.path.join(search_path, file), os.path.join(search_path, new_filename.capitalize() + file_extension))
 
 print "Cleaning", search_path
 print "Files", deleted_files
