@@ -99,7 +99,7 @@ def moveAloneFiles(search_path):
             dir = os.path.join(currentpath, folder)
             dir_files = os.listdir(dir)
             if len(dir_files) == 1:
-                shutil.move(dir_files[0], search_path)
+                shutil.move(os.path.join(dir, dir_files[0]), os.path.join(search_path, dir_files[0]))
 
 def clean(search_path, search_extensions):
     #print "Cleaning...", search_path
