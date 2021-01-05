@@ -1,31 +1,32 @@
-import urllib, os, sys, datetime, shutil
+import urllib, os, shutil
+from utils import download
+from utils import move
 
-print "Python version", sys.version
-print "Date", datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+def scriptsUpdater():
+    scripts_path = "/media/portable/backup/scripts"
+    project_path = "portable_folder_structure/backup/scripts"
+    files = ["updater.py", "unrar.py", "cleaner.py", "unzip.py", "README.md", "all-in-one.py", "remove-completed-torrents.sh", "completed-torrents.sh"]
 
-scripts_path = "/media/portable/backup/scripts"
-base_url = "https://raw.githubusercontent.com/r2bapps/rpi-kodi/main/portable_folder_structure/backup/scripts/"
-files = ["updater.py", "unrar.py", "cleaner.py", "unzip.py", "README.md", "all-in-one.py", "remove-completed-torrents.sh", "completed-torrents.sh"]
+    downloaded_files = download(files, project_path)
+    moved_files = move(files, scripts_path)
 
-downloaded_files = []
+    if downloaded_files == len(files) and moved_files == len(files):
+        print "Updated system: Ok"
 
-# get scripts_path from command
-if len(sys.argv) >= 2:
-    scripts_path = sys.argv[1]
+def transmissionConfigUpdater():
+    scripts_path = "/storage/.kodi/userdata/addon_data/service.transmission"
+    project_path = "portable_folder_structure/backup/system/transmission/config"
+    files = ["settings.json", "settings.xml"]
 
-for filename in files:
-    url = base_url + filename
-    try:
-        urllib.urlretrieve(url, filename)
-        downloaded_files.append(filename)
-    except:
-        # do nothing
-        print "Failed file", filename
+    downloaded_files = download(files, project_path)
+    moved_files = move(files, scripts_path)
 
-# moves downloaded files to scripts folders
-for file in files:
-    shutil.move(file, os.path.join(scripts_path, file))
+    if downloaded_files == len(files) and moved_files == len(files):
+        print "Updated transmission config: Ok"
 
-print "Downloading", base_url
-print "Files", files
-print "Ok", downloaded_files
+print "Updating..."
+
+scriptsUpdater()
+transmissionConfigUpdater()
+
+print "End"
