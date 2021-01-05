@@ -1,6 +1,4 @@
-import urllib, os, shutil
-from utils import download
-from utils import move
+import urllib, os, shutil, utils
 
 def scriptsUpdater():
     scripts_path = "/media/portable/backup/scripts"
