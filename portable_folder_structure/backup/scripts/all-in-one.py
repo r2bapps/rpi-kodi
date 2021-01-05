@@ -54,7 +54,7 @@ def unrar(search_path, search_extensions, parts_extensions):
                         found = os.path.join(currentpath, file)
                         compressed_files.append(filename)
                         try:
-                            command = "unrar e '" + found + "' " + search_path
+                            command = "unrar e '" + found + "' " #+ search_path
                             result = os.system(command)
                             if result == 0:
                                 folder = os.path.dirname(found)
@@ -63,8 +63,8 @@ def unrar(search_path, search_extensions, parts_extensions):
                             # do nothing
                             print "Failed file", found
     # removes to delete folders
-    for folder in to_delete_folders:
-        shutil.rmtree(folder)
+    #for folder in to_delete_folders:
+    #    shutil.rmtree(folder)
     #print "Compressed files", compressed_files
     #print "Uncompressed files correctly", to_delete_folders
 
