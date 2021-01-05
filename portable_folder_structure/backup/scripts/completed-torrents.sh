@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Removes completed torrents from transmision list
 /media/portable/backup/scripts/remove-completed-torrents.sh
 

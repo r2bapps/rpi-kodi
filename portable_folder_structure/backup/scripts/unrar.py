@@ -24,7 +24,7 @@ for currentpath, folders, files in os.walk(search_path):
                     found = os.path.join(currentpath, file)
                     compressed_files.append(filename)
                     try:
-                        command = "unrar e '" + found + "' " + search_path
+                        command = "unrar e '" + found + "' " #+ search_path
                         result = os.system(command)
                         if result == 0:
                             folder = os.path.dirname(found)
@@ -34,8 +34,8 @@ for currentpath, folders, files in os.walk(search_path):
                         print "Failed file", found
 
 # removes to delete folders
-for folder in to_delete_folders:
-    shutil.rmtree(folder)
+#for folder in to_delete_folders:
+#    shutil.rmtree(folder)
 
 print "Uncompressing", search_path
 print "Files", compressed_files
