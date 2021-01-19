@@ -1,7 +1,9 @@
-import sys, os, zipfile, datetime, shutil
+import sys, os, zipfile, datetime, shutil, time
 
 # scripts path: /media/portable/backup/scripts
 
+default_lock_file_name = "scripts.lock"
+default_wait = 60
 default_search_path = "/media/portable/torrent/descargas"
 default_unzip_search_extensions = [".zip"]
 default_unrar_search_extensions = [".rar"]
@@ -9,6 +11,14 @@ default_parts_extensions = [".part01", ".part1"]
 default_clean_search_extensions = [".txt", ".url"]
 default_remove_patterns = ["[www", "[hdtv", "[bluray", "[ac3", "[castellano", "[dvdrip", "[spanish", "[1080p"]
 default_remove_end_pattern = "]"
+
+def lock():
+    file = open(default_lock_file_name, "w")
+    file.write("")
+    file.close()
+
+def unlock():
+    os.remove(default_lock_file_name)
 
 # shows env info
 def showEnvInfo():
@@ -128,5 +138,10 @@ def execute():
     unrar(default_search_path, default_unrar_search_extensions, default_parts_extensions)
     clean(default_search_path, default_clean_search_extensions)
     print "Finish!!"
-    
+
+while os.path.exists(default_lock_file_name):
+    time.sleep(default_wait)
+
+lock()
 execute()
+unlock()
