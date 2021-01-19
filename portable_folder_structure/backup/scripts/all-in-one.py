@@ -7,7 +7,7 @@ default_unzip_search_extensions = [".zip"]
 default_unrar_search_extensions = [".rar"]
 default_parts_extensions = [".part01", ".part1"]
 default_clean_search_extensions = [".txt", ".url"]
-default_remove_patterns = ["[www", "[hdtv", "[bluray", "[ac3", "[castellano"]
+default_remove_patterns = ["[www", "[hdtv", "[bluray", "[ac3", "[castellano", "[dvdrip", "[spanish", "[1080p"]
 default_remove_end_pattern = "]"
 
 # shows env info
