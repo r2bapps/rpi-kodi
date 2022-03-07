@@ -2,6 +2,7 @@ import sys, os, zipfile, datetime, shutil, time
 
 # scripts path: /media/portable/backup/scripts
 
+default_lock_file_path = "/storage/.config"
 default_lock_file_name = "scripts.lock"
 default_wait = 60
 default_search_path = "/media/portable/torrent/descargas"
@@ -13,12 +14,15 @@ default_remove_patterns = ["[www", "[hdtv", "[bluray", "[ac3", "[castellano", "[
 default_remove_end_pattern = "]"
 
 def lock():
-    file = open(default_lock_file_name, "w")
+    # requires that /storage/.config/autostart.sh with "rm /storage/.config/scripts.lock" line
+    absPath = os.path.join(default_lock_file_path, default_lock_file_name)
+    file = open(absPath, "w")
     file.write("")
     file.close()
 
 def unlock():
-    os.remove(default_lock_file_name)
+    absPath = os.path.join(default_lock_file_path, default_lock_file_name)
+    os.remove(absPath)
 
 # shows env info
 def showEnvInfo():
